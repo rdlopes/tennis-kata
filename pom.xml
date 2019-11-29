@@ -95,7 +95,7 @@
                 <artifactId>cukedoctor-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
-                    <outputFileName>${project.artifactId}-documentation</outputFileName>
+                    <outputFileName>index</outputFileName>
                     <documentTitle>Tennis Kata Solution</documentTitle>
                     <outputDir>../docs</outputDir>
                     <format>html</format>
