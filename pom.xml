@@ -87,14 +87,7 @@
                 <version>3.1.0</version>
                 <configuration>
                     <excludeDefaultDirectories>false</excludeDefaultDirectories>
-                    <filesets>
-                        <fileset>
-                            <directory>${basedir}</directory>
-                            <includes>
-                                <include>README.*</include>
-                            </includes>
-                        </fileset>
-                    </filesets>
+                    <directory>${basedir}/docs</directory>
                 </configuration>
             </plugin>
             <plugin>

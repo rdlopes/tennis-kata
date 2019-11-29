@@ -1,0 +1,208 @@
+:toc: left
+:backend: html
+:doctitle: Tennis Kata Solution
+:doctype: book
+:icons: font
+:numbered:
+:!linkcss:
+:sectanchors:
+:sectlink:
+:docinfo:
+:source-highlighter: highlightjs
+:toclevels: 3
+:revnumber: 0.0.1-SNAPSHOT
+:hardbreaks:
+:chapter-label: Chapter
+:version-label: Version
+
+= *Tennis Kata Solution*
+
+include::/Users/rdlopes/IdeaProjects/tennis-kata/target/test-classes/features/cukedoctor-intro.adoc[leveloffset=+1]
+
+
+== *Features*
+
+[[Manage-game-score, Manage game score]]
+=== *Manage game score*
+
+ifndef::backend-pdf[]
+minmax::Manage-game-score[]
+endif::[]
+****
+As a tennis referee
+  I want to manage the score of a set of a tennis match between 2 players with simple game rules
+  In order to display the current game score of each player.
+
+  * Set starts with a score of 0 point for each player
+  * Each time a player wins a point, the set score changes as follow: 0 -> 15 -> 30 -> 40 -> win set
+****
+
+==== Game start
+
+==========
+Given ::
+a new game icon:thumbs-up[role="green",title="Passed"] [small right]#(082ms)#
+Then ::
+set is PLAYING with score 0/0 icon:thumbs-up[role="green",title="Passed"] [small right]#(053ms)#
+==========
+
+==== Player 1 wins game
+
+==========
+Given ::
+a new game icon:thumbs-up[role="green",title="Passed"] [small right]#(002ms)#
+When ::
+PLAYER1 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(006ms)#
+Then ::
+set is PLAYING with score 15/0 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+When ::
+PLAYER1 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+Then ::
+set is PLAYING with score 30/0 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+When ::
+PLAYER1 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+Then ::
+set is PLAYING with score 40/0 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+When ::
+PLAYER1 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+Then ::
+set is SET_PLAYER1 with score 40/0 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+==========
+
+==== Player 2 wins game
+
+==========
+Given ::
+a new game icon:thumbs-up[role="green",title="Passed"] [small right]#(002ms)#
+When ::
+PLAYER2 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+Then ::
+set is PLAYING with score 0/15 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+When ::
+PLAYER2 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+Then ::
+set is PLAYING with score 0/30 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+When ::
+PLAYER2 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+Then ::
+set is PLAYING with score 0/40 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+When ::
+PLAYER2 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+Then ::
+set is SET_PLAYER2 with score 0/40 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+==========
+
+[[Manage-rule-DEUCE, Manage rule DEUCE]]
+=== *Manage rule DEUCE*
+
+ifndef::backend-pdf[]
+minmax::Manage-rule-DEUCE[]
+endif::[]
+****
+As a tennis referee
+  I want to manage the specifics of the DEUCE rule at the end of the game
+  In order to display the current game score of each player.
+
+  * If the 2 players reach the score 40, the DEUCE rule is activated.
+  * If the score is DEUCE, the player who wins the point takes the ADVANTAGE.
+  * If the player who has the ADVANTAGE wins the point, he wins the game.
+  * If the player who has the ADVANTAGE loses the point, he score is DEUCE.
+****
+
+==== 2 players reach the score 40
+
+==========
+Given ::
+a new game icon:thumbs-up[role="green",title="Passed"] [small right]#(002ms)#
+When ::
+both players reach score 40 icon:thumbs-up[role="green",title="Passed"] [small right]#(003ms)#
+Then ::
+set is DEUCE with score 40/40 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+==========
+
+==== Player 1 wins advantage
+
+==========
+Given ::
+a new game icon:thumbs-up[role="green",title="Passed"] [small right]#(010ms)#
+When ::
+both players reach score 40 icon:thumbs-up[role="green",title="Passed"] [small right]#(003ms)#
+And ::
+PLAYER1 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+Then ::
+set is ADVANTAGE_PLAYER1 with score 40/40 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+==========
+
+==== Player 1 wins game after ADVANTAGE
+
+==========
+Given ::
+a new game icon:thumbs-up[role="green",title="Passed"] [small right]#(002ms)#
+When ::
+both players reach score 40 icon:thumbs-up[role="green",title="Passed"] [small right]#(003ms)#
+And ::
+PLAYER1 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+And ::
+PLAYER1 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(003ms)#
+Then ::
+set is SET_PLAYER1 with score 40/40 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+==========
+
+==== Player 1 loses advantage
+
+==========
+Given ::
+a new game icon:thumbs-up[role="green",title="Passed"] [small right]#(005ms)#
+When ::
+both players reach score 40 icon:thumbs-up[role="green",title="Passed"] [small right]#(026ms)#
+And ::
+PLAYER1 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(006ms)#
+And ::
+PLAYER2 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(002ms)#
+Then ::
+set is DEUCE with score 40/40 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+==========
+
+==== Player 2 wins advantage
+
+==========
+Given ::
+a new game icon:thumbs-up[role="green",title="Passed"] [small right]#(007ms)#
+When ::
+both players reach score 40 icon:thumbs-up[role="green",title="Passed"] [small right]#(005ms)#
+And ::
+PLAYER2 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(007ms)#
+Then ::
+set is ADVANTAGE_PLAYER2 with score 40/40 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+==========
+
+==== Player 2 wins game after ADVANTAGE
+
+==========
+Given ::
+a new game icon:thumbs-up[role="green",title="Passed"] [small right]#(004ms)#
+When ::
+both players reach score 40 icon:thumbs-up[role="green",title="Passed"] [small right]#(012ms)#
+And ::
+PLAYER2 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+And ::
+PLAYER2 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+Then ::
+set is SET_PLAYER2 with score 40/40 icon:thumbs-up[role="green",title="Passed"] [small right]#(000ms)#
+==========
+
+==== Player 2 loses advantage
+
+==========
+Given ::
+a new game icon:thumbs-up[role="green",title="Passed"] [small right]#(002ms)#
+When ::
+both players reach score 40 icon:thumbs-up[role="green",title="Passed"] [small right]#(013ms)#
+And ::
+PLAYER2 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(006ms)#
+And ::
+PLAYER1 wins icon:thumbs-up[role="green",title="Passed"] [small right]#(008ms)#
+Then ::
+set is DEUCE with score 40/40 icon:thumbs-up[role="green",title="Passed"] [small right]#(001ms)#
+==========
+
