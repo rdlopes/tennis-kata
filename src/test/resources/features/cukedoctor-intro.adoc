@@ -1,0 +1,19 @@
+= Introduction
+
+This is my answer to the Nexity kata about computing tennis scores within the scope of a game set.
+
+== Project structure
+
+To keep things simple, I've chosen to boot a Spring project from Spring initializer.
+
+It is based on JDK 13 compatibility and uses Maven to build.
+
+Tests are run by Cucumber through the use of feature files.
+
+== Kata solutions
+
+Cukedoctor has been used to produce this living documentation.
+
+The features listed here reflect on the features exposed in the kata and are tested by Cucumber.
+
+To produce this document, simply run `mvn clean package` in the command line.
