@@ -102,9 +102,9 @@
                 <artifactId>cukedoctor-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
-                    <outputFileName>README</outputFileName>
+                    <outputFileName>${project.artifactId}-documentation</outputFileName>
                     <documentTitle>Tennis Kata Solution</documentTitle>
-                    <outputDir>..</outputDir>
+                    <outputDir>../docs</outputDir>
                     <format>html</format>
                     <toc>left</toc>
                     <numbered>true</numbered>
